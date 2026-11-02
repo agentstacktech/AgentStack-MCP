@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+*.log
+*.tgz
+.env
+.env.*
+!.env.example
+.DS_Store
+*.bak
+*.tmp-*
+.vscode/mcp.json
+.cursor/mcp.json

@@ -1,0 +1,77 @@
+{
+  "name": "@agentstack/mcp",
+  "version": "0.1.0",
+  "description": "Official connector for the AgentStack MCP server: one-command setup for Cursor, Claude, VS Code, Windsurf, plus a stdio bridge.",
+  "mcpName": "io.github.agentstacktech/agentstack-mcp",
+  "license": "MIT",
+  "author": "AgentStack (https://agentstack.tech)",
+  "homepage": "https://github.com/agentstacktech/AgentStack-MCP#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agentstacktech/AgentStack-MCP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/agentstacktech/AgentStack-MCP/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "agentstack",
+    "ai-agents",
+    "backend",
+    "cursor",
+    "claude",
+    "vscode",
+    "windsurf",
+    "streamable-http"
+  ],
+  "type": "module",
+  "bin": {
+    "agentstack-mcp": "dist/index.js"
+  },
+  "main": "dist/lib.js",
+  "types": "dist/lib.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/lib.d.ts",
+      "import": "./dist/lib.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node scripts/chmod-bin.mjs",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "links": "node scripts/print-links.mjs",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build",
+    "prepublishOnly": "npm run check"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@types/node": "^20.19.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "eslint": "^9.39.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.72.0",
+    "vitest": "^3.2.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
