@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [18, 20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - name: CLI smoke test
+        run: |
+          node dist/index.js --version
+          node dist/index.js init cursor --dry-run --config "$RUNNER_TEMP/mcp.json"
+
+  manifests:
+    name: Validate manifests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Validate server.json against the MCP Registry schema
+        run: |
+          SCHEMA_URL=$(node -p "require('./server.json')['\$schema']")
+          curl -fsSL "$SCHEMA_URL" -o "$RUNNER_TEMP/server.schema.json"
+          node scripts/validate-server-json.mjs "$RUNNER_TEMP/server.schema.json"
+      - name: Validate JSON examples
+        run: |
+          for f in $(git ls-files '*.json'); do node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))" || exit 1; done

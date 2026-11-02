@@ -1,0 +1,19 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "agentstack-api-key",
+      "description": "AgentStack API key (ask_…)",
+      "password": true
+    }
+  ],
+  "servers": {
+    "agentstack": {
+      "type": "http",
+      "url": "https://agentstack.tech/mcp",
+      "headers": {
+        "X-API-Key": "${input:agentstack-api-key}"
+      }
+    }
+  }
+}

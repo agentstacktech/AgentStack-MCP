@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "agentstack": {
+      "command": "npx",
+      "args": ["-y", "@agentstack/mcp"],
+      "env": {
+        "AGENTSTACK_API_KEY": "ask_REPLACE_WITH_YOUR_KEY"
+      }
+    }
+  }
+}

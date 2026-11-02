@@ -1,0 +1,15 @@
+{
+  "model": "<any Responses-API model with remote MCP support>",
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "agentstack",
+      "server_url": "https://agentstack.tech/mcp",
+      "headers": {
+        "X-API-Key": "<AGENTSTACK_API_KEY — inject from your secret store at request time>"
+      },
+      "require_approval": "always"
+    }
+  ],
+  "input": "Use agentstack.execute to run auth.get_profile and tell me which projects I have."
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "agentstack": {
+      "httpUrl": "https://agentstack.tech/mcp",
+      "headers": {
+        "X-API-Key": "$AGENTSTACK_API_KEY"
+      }
+    }
+  }
+}

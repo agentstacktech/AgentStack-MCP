@@ -1,0 +1,53 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.agentstacktech/agentstack-mcp",
+  "title": "AgentStack",
+  "description": "Backend for AI agents: data, auth, payments, CRM, hosting, RAG and automation via one MCP tool.",
+  "websiteUrl": "https://agentstack.tech",
+  "repository": {
+    "url": "https://github.com/agentstacktech/AgentStack-MCP",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "icons": [
+    {
+      "src": "https://agentstack.tech/mcp/icon",
+      "mimeType": "image/png"
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://agentstack.tech/mcp",
+      "headers": [
+        {
+          "name": "X-API-Key",
+          "description": "Optional AgentStack API key (ask_…). Leave empty to sign in with OAuth.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@agentstack/mcp",
+      "version": "0.1.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "AGENTSTACK_API_KEY",
+          "description": "AgentStack API key (ask_…) from https://agentstack.tech/user/profile?tab=api",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}
