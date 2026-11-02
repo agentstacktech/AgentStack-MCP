@@ -1,0 +1,22 @@
+# Smithery configuration — https://smithery.ai/docs
+# Local (stdio) install via the npm bridge. The hosted endpoint
+# https://agentstack.tech/mcp can also be listed on Smithery as a URL server.
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - apiKey
+    properties:
+      apiKey:
+        type: string
+        title: AgentStack API key
+        description: "Your AgentStack API key (ask_…). Create one at https://agentstack.tech/user/profile?tab=api"
+  commandFunction: |-
+    (config) => ({
+      command: 'npx',
+      args: ['-y', '@agentstack/mcp'],
+      env: { AGENTSTACK_API_KEY: config.apiKey }
+    })
+  exampleConfig:
+    apiKey: ask_your_key_here
