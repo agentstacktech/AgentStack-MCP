@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: AgentStack docs
+    url: https://agentstack.tech/mcp-docs
+    about: Questions about actions, plans or the hosted service
+  - name: Security report
+    url: https://github.com/agentstacktech/AgentStack-MCP/security/advisories/new
+    about: Report vulnerabilities privately

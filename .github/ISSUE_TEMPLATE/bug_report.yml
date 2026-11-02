@@ -1,0 +1,26 @@
+name: Bug report
+description: Something is wrong with the connector (bridge, CLI or configs)
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "**Never paste API keys or tokens.** Security issues: use private reporting (see SECURITY.md)."
+  - type: input
+    id: client
+    attributes:
+      label: MCP client and version
+      placeholder: Cursor 2.x, Claude Desktop, VS Code 1.10x …
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Connector version / Node version
+      placeholder: "npx -y @agentstack/mcp --version ; node -v"
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Steps, expected vs actual. Output of `npx -y @agentstack/mcp doctor` helps.
+    validations:
+      required: true
